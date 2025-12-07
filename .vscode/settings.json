@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Aim and Shoot.sln"
+    "dotnet.defaultSolution": "IMD-227-Final-Project.sln"
 }
