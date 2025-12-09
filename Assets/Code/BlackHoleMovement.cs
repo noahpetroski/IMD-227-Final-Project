@@ -1,4 +1,5 @@
 //using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlackHoleMovement : MonoBehaviour
@@ -29,6 +30,7 @@ public class BlackHoleMovement : MonoBehaviour
 
     void Start()
     {
+        
     
         gameEnd.SetActive(false);
 
@@ -61,6 +63,9 @@ public class BlackHoleMovement : MonoBehaviour
         {
             gameEnd.SetActive(true);
             //trigger end scene??
+            Renderer holeMaterial = GetComponent<Renderer>();
+            holeMaterial.enabled = false;
+
         }
     }
 
