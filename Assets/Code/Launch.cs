@@ -5,45 +5,85 @@ using UnityEngine.InputSystem;
 public class Launch : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject[] objsLaunch;
-    private int objNum;
+    public GameObject[] objsLaunch; //possible bullets
+    private int objNum; //number of bullets
     public GameObject currObj;
-    public bool shoot = false;
+    public float speed = 20f; //speed of bullet
+    public float lifetime = 4f; //how long each bullet exists for
+    public Boolean shoot = false;
+    public Transform launchPos; //from where the bullet gets launched
     void Start()
     {
-        objNum = 0;
+       /* objNum = 0;
         currObj = objsLaunch[objNum];
         currObj.GetComponent<MeshRenderer>().enabled = true;
-        for (int i = 1; i < objsLaunch.Length; i++)
+
+        // Set start position to launchPos
+        transform.position = launchPos.position;
+        transform.rotation = launchPos.rotation;
+
+        for (int i = 1; i < objsLaunch.Length; i++) //makes other objects not visible
         {
             objsLaunch[i].GetComponent<MeshRenderer>().enabled = false;
         }
-
+        */
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.isPressed)
+       // Set position to launchPos
+        if (Keyboard.current.spaceKey.isPressed ||
+            Mouse.current.leftButton.wasPressedThisFrame)
         {
             shoot = true;
+            Shoot();
+        }
+    }
+    
+    void Shoot()
+    {
+        GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
+        Camera cam = Camera.main;
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // Aim firePoint at the hit point
+            launchPos.LookAt(hit.point);
+
+            // Spawn bullet
+            GameObject bullet = Instantiate(prefab, launchPos.position, launchPos.rotation);
+
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            BulletSettings settings = bullet.GetComponent<BulletSettings>();
+            rb.linearVelocity = launchPos.forward * settings.speed;
+
+            Destroy(bullet, lifetime);
         }
 
-        if (shoot)
-        {
-            if (transform.position.z < -2)
+        /*Vector3 targetPoint = ray.GetPoint(1000f);
+        Vector3 direction = (targetPoint - launchPos.position).normalized;
+        rb.linearVelocity = launchPos.forward * settings.speed;*/
+
+
+       /* BulletMover mover = bullet.AddComponent<BulletMover>();
+        mover.speed = settings.speed;
+        mover.lifetime = settings.lifetime;*/
+       /* if (transform.position.z < -2)
             {
-                transform.position += transform.forward * 5 * Time.deltaTime;
+                transform.position += transform.forward * speed * Time.deltaTime;
+                shoot = false;
             } else
             {
-                shoot = false;
                 currObj.GetComponent<MeshRenderer>().enabled = false;
-                transform.position = new Vector3(0.038f, 0.68f,-9.48f);
+                //transform.position = new Vector3(0.038f, 0.68f,-9.48f); // change to camera position
+                //transform.position = Camera.main.transform.position;
+                transform.position = launchPos.position;
+                transform.rotation = launchPos.rotation; 
                 objNum++;
                 currObj = objsLaunch[objNum%objsLaunch.Length];
                 currObj.GetComponent<MeshRenderer>().enabled = true;
-            }
-        }
-        
+            }*/
     }
 }
