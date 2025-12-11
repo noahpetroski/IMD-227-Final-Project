@@ -1,6 +1,7 @@
 //using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlackHoleMovement : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class BlackHoleMovement : MonoBehaviour
     public float maxHeight = 5;
     public float minWidth = -5;
     public float maxWidth = 5;
-    public float speed = 1f;
+    public float speed = .15f;
 
     //pulser variables
     public float pulseRate = 1f;
@@ -27,11 +28,14 @@ public class BlackHoleMovement : MonoBehaviour
     public GameObject gameEnd;
     public bool imageShow = false;
 
+    // z coord variable
+    float zcoord;
+
 
     void Start()
     {
-        
-    
+        var startPos = new Vector3(0,2, 12);
+        transform.position = startPos;
         gameEnd.SetActive(false);
 
         HoleMove();
@@ -48,7 +52,7 @@ public class BlackHoleMovement : MonoBehaviour
 
         if (boo)
         {
-
+            
             Pulser();
             pulserCount -= Time.deltaTime;
 
@@ -66,19 +70,22 @@ public class BlackHoleMovement : MonoBehaviour
             Renderer holeMaterial = GetComponent<Renderer>();
             holeMaterial.enabled = false;
 
+            //remember scene
+            SceneManager.LoadScene("GameOver");
+
         }
     }
 
     void HoleMove()
     {
         //reset scale
-        transform.localScale = new Vector3(3, 3, 3);
-      
+        transform.localScale = new Vector3(2, 2, 2);
+        zcoord = transform.position.z;
         //random position
-        var holePos = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), 0);
+        var holePos = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), zcoord);
 
         transform.position = holePos;
-
+        Debug.Log(holePos);
     }
 
     void OnTriggerEnter(Collider collider)
@@ -104,9 +111,12 @@ public class BlackHoleMovement : MonoBehaviour
 
         float scale = 1 + pulseSize * Mathf.Sin(pulseTheta);
 
-        transform.localScale = new Vector3(scale * 3, scale *3, scale *3);
+        transform.localScale = new Vector3(scale * 2, scale * 2, scale *2);
+
+       // zcoord -= 4; 
+       // transform.position.z = zcoord;
        
-        Debug.Log(scale + ", " + scale);
+       // Debug.Log(scale + ", " + scale);
       
     }
 }
