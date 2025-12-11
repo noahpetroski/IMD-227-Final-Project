@@ -780,10 +780,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlackHoleMovement
   cam: {fileID: 330585545}
-  minHeight: -5
-  maxHeight: 5
-  minWidth: -5
-  maxWidth: 5
+  minHeight: -10
+  maxHeight: 10
+  minWidth: -15
+  maxWidth: 15
   speed: 1
   pulseRate: 1
   pulseSize: 0.2
