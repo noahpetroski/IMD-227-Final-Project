@@ -10,40 +10,27 @@ public class Launch : MonoBehaviour
     public GameObject currObj;
     public float speed = 20f; //speed of bullet
     public float lifetime = 4f; //how long each bullet exists for
-    public Boolean shoot = false;
     public Transform launchPos; //from where the bullet gets launched
     void Start()
     {
-       /* objNum = 0;
+        objNum = 0;
         currObj = objsLaunch[objNum];
-        currObj.GetComponent<MeshRenderer>().enabled = true;
-
-        // Set start position to launchPos
-        transform.position = launchPos.position;
-        transform.rotation = launchPos.rotation;
-
-        for (int i = 1; i < objsLaunch.Length; i++) //makes other objects not visible
-        {
-            objsLaunch[i].GetComponent<MeshRenderer>().enabled = false;
-        }
-        */
     }
 
     // Update is called once per frame
     void Update()
     {
-       // Set position to launchPos
-        if (Keyboard.current.spaceKey.isPressed ||
-            Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            shoot = true;
             Shoot();
         }
     }
     
     void Shoot()
     {
-        GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
+        // Select an object from the list of possible objects to launch
+        GameObject prefab = objsLaunch[objNum%objsLaunch.Length];
+        objNum++;
         Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
