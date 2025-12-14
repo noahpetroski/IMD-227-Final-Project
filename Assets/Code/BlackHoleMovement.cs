@@ -28,9 +28,10 @@ public class BlackHoleMovement : MonoBehaviour
     public GameObject gameEnd;
     public bool imageShow = false;
 
-    // z coord variable
-    float zcoord;
+    // sound
+    public AudioClip audioHoleMove; 
 
+    
 
     void Start()
     {
@@ -80,12 +81,12 @@ public class BlackHoleMovement : MonoBehaviour
     {
         //reset scale
         transform.localScale = new Vector3(2, 2, 2);
-        zcoord = transform.position.z;
+       
         //random position
-        var holePos = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), zcoord);
+        var holePos = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), Random.Range(minWidth, maxWidth));
 
         transform.position = holePos;
-        Debug.Log(holePos);
+        //Debug.Log(holePos);
     }
 
     void OnTriggerEnter(Collider collider)
@@ -97,6 +98,8 @@ public class BlackHoleMovement : MonoBehaviour
         else{
         boo = true;
         pulserCount = pulserDuration;
+        speed += .06f;
+        AudioSource.PlayClipAtPoint(audioHoleMove, transform.position);
         }
        
 
@@ -112,11 +115,6 @@ public class BlackHoleMovement : MonoBehaviour
         float scale = 1 + pulseSize * Mathf.Sin(pulseTheta);
 
         transform.localScale = new Vector3(scale * 2, scale * 2, scale *2);
-
-       // zcoord -= 4; 
-       // transform.position.z = zcoord;
-       
-       // Debug.Log(scale + ", " + scale);
       
     }
 }
