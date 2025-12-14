@@ -4,7 +4,7 @@ using TMPro;
 public class UpdateText : MonoBehaviour
 {
     private float currTime;
-    public int numDigits = 7; // num of digits displayed for time
+    public int numDigits = 5; // num of digits displayed for time
     private bool stop = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
