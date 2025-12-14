@@ -179,7 +179,7 @@ MonoBehaviour:
   - {fileID: 5500495927655346003, guid: 63885ad2b761d5b48b03c4e3d00238bc, type: 3}
   - {fileID: 5500495927655346003, guid: a55227e85dcfe254ea0e269385a00871, type: 3}
   - {fileID: 5500495927655346003, guid: dc0122eaf6b89bc42983f7146b096a2b, type: 3}
-  currObj: {fileID: 4377946096136254926, guid: ad4a605d2cb1147ebb8213cf661a64a9, type: 3}
+  currObj: {fileID: 0}
   speed: 20
   lifetime: 4
   launchPos: {fileID: 1623712512}
