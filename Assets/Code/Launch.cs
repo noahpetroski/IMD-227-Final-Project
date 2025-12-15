@@ -28,8 +28,6 @@ public class Launch : MonoBehaviour
     
     void Shoot()
     {
-        // Select an object from the list of possible objects to launch
-        GameObject prefab = objsLaunch[objNum%objsLaunch.Length];
 
         GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
         // Select a random object from the list of possible objects to launch

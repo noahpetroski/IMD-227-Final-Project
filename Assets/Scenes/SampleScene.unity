@@ -901,7 +901,6 @@ MonoBehaviour:
   minWidth: -15
   maxWidth: 15
   speed: 0.15
-  speed: 0.01
   pulseRate: 1
   pulseSize: 0.2
   boo: 0
