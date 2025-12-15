@@ -1191,7 +1191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81457422c849b76499ebc9490e1f2ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateText
+<<<<<<< Updated upstream
   numDigits: 5
+=======
+  numDigits: 7
+>>>>>>> Stashed changes
 --- !u!114 &1288994674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,6 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04db880308ca99408bd2e151b3164a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GetScore
+  numDigits: 7
 --- !u!1 &1318844443
 GameObject:
   m_ObjectHideFlags: 0
