@@ -30,6 +30,10 @@ public class Launch : MonoBehaviour
     {
         // Select an object from the list of possible objects to launch
         GameObject prefab = objsLaunch[objNum%objsLaunch.Length];
+
+        GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
+        // Select a random object from the list of possible objects to launch
+        int randomIndex = UnityEngine.Random.Range(0, objsLaunch.Length);
         objNum++;
         Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
