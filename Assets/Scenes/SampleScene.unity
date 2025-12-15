@@ -1192,7 +1192,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateText
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   numDigits: 5
+=======
+  numDigits: 7
+>>>>>>> Stashed changes
 =======
   numDigits: 7
 >>>>>>> Stashed changes
