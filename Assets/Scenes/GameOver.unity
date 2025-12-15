@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04db880308ca99408bd2e151b3164a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GetScore
-  numDigits: 7
+  numDigits: 5
 --- !u!1 &1354073063
 GameObject:
   m_ObjectHideFlags: 0

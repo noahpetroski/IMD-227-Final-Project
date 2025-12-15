@@ -28,11 +28,9 @@ public class Launch : MonoBehaviour
     
     void Shoot()
     {
-
-        GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
         // Select a random object from the list of possible objects to launch
-        int randomIndex = UnityEngine.Random.Range(0, objsLaunch.Length);
-        objNum++;
+        GameObject prefab = objsLaunch[UnityEngine.Random.Range(0, objsLaunch.Length)];
+  
         Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
@@ -48,31 +46,9 @@ public class Launch : MonoBehaviour
             BulletSettings settings = bullet.GetComponent<BulletSettings>();
             rb.linearVelocity = launchPos.forward * settings.speed;
 
+            settings.PlayShootSound();
+
             Destroy(bullet, lifetime);
         }
-
-        /*Vector3 targetPoint = ray.GetPoint(1000f);
-        Vector3 direction = (targetPoint - launchPos.position).normalized;
-        rb.linearVelocity = launchPos.forward * settings.speed;*/
-
-
-       /* BulletMover mover = bullet.AddComponent<BulletMover>();
-        mover.speed = settings.speed;
-        mover.lifetime = settings.lifetime;*/
-       /* if (transform.position.z < -2)
-            {
-                transform.position += transform.forward * speed * Time.deltaTime;
-                shoot = false;
-            } else
-            {
-                currObj.GetComponent<MeshRenderer>().enabled = false;
-                //transform.position = new Vector3(0.038f, 0.68f,-9.48f); // change to camera position
-                //transform.position = Camera.main.transform.position;
-                transform.position = launchPos.position;
-                transform.rotation = launchPos.rotation; 
-                objNum++;
-                currObj = objsLaunch[objNum%objsLaunch.Length];
-                currObj.GetComponent<MeshRenderer>().enabled = true;
-            }*/
     }
 }

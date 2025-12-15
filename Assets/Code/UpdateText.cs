@@ -17,10 +17,13 @@ public class UpdateText : MonoBehaviour
     {
         if (!stop)
         {
+            // Update the current time
             currTime += Time.deltaTime;
             int displayInt = (int) (currTime * 10);
             string displayText = displayInt.ToString();
-            displayText = displayText.PadLeft(numDigits, '0'); // Add padded zeroes
+
+            // Add padded zeroes to time/score and update the text on the screen
+            displayText = displayText.PadLeft(numDigits, '0');
             gameObject.GetComponent<GetScore>().setScore(displayText);
             GetComponent<TMP_Text>().SetText(displayText.ToString());
         }
